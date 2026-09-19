@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import "./dashboard.css";
+import "./Dashboard.css";
 import Navbar from "../navbar";
 import API_BASE_URL from "../../config/api";
 
