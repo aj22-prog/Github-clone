@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../navbar";
 import "./repo.css";
+import API_BASE_URL from "../../config/api";
 
 const CreateRepo = () => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const CreateRepo = () => {
         issues: [],
       };
 
-      const res = await axios.post("http://localhost:3002/repo/create", payload);
+      const res = await axios.post(`${API_BASE_URL}/repo/create`, payload);
       setLoading(false);
 
       if (res.data && res.data.repositoryID) {

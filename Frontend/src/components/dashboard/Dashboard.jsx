@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import "./dashboard.css";
 import Navbar from "../navbar";
+import API_BASE_URL from "../../config/api";
 
 const Dashboard = () => {
   const [repositories, setRepositories] = useState([]);
@@ -26,7 +27,7 @@ const Dashboard = () => {
         setLoading(true);
         // Fetch current user repos
         if (userId) {
-          const res = await fetch(`http://localhost:3002/repo/user/${userId}`);
+          const res = await fetch(`${API_BASE_URL}/repo/user/${userId}`);
           const data = await res.json();
           if (data && Array.isArray(data.repositories)) {
             setRepositories(data.repositories);
@@ -38,7 +39,7 @@ const Dashboard = () => {
         }
 
         // Fetch suggested / all repos
-        const allRes = await fetch(`http://localhost:3002/repo/all`);
+        const allRes = await fetch(`${API_BASE_URL}/repo/all`);
         const allData = await allRes.json();
         if (Array.isArray(allData)) {
           setSuggestedRepositories(allData);

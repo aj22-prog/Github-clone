@@ -3,6 +3,7 @@ import axios from "axios";
 import Navbar from "../navbar";
 import { Link } from "react-router-dom";
 import "./issue.css";
+import API_BASE_URL from "../../config/api";
 
 const IssueList = () => {
   const [issues, setIssues] = useState([]);
@@ -13,7 +14,7 @@ const IssueList = () => {
   const fetchAllIssues = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:3002/issue/all");
+      const res = await axios.get(`${API_BASE_URL}/issue/all`);
       setIssues(Array.isArray(res.data) ? res.data : []);
       setLoading(false);
     } catch (err) {
@@ -29,7 +30,7 @@ const IssueList = () => {
   const handleToggleStatus = async (issueId, currentStatus) => {
     const nextStatus = currentStatus === "closed" ? "open" : "closed";
     try {
-      await axios.put(`http://localhost:3002/issue/update/${issueId}`, {
+      await axios.put(`${API_BASE_URL}/issue/update/${issueId}`, {
         status: nextStatus,
       });
       fetchAllIssues();
@@ -41,7 +42,7 @@ const IssueList = () => {
   const handleDeleteIssue = async (issueId) => {
     if (window.confirm("Delete this issue?")) {
       try {
-        await axios.delete(`http://localhost:3002/issue/delete/${issueId}`);
+        await axios.delete(`${API_BASE_URL}/issue/delete/${issueId}`);
         fetchAllIssues();
       } catch (err) {
         console.error("Error deleting issue:", err);

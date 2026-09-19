@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../navbar";
 import "./repo.css";
+import API_BASE_URL from "../../config/api";
 
 const RepoDetail = () => {
   const { id } = useParams();
@@ -31,7 +32,7 @@ const RepoDetail = () => {
   const fetchRepo = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:3002/repo/${id}`);
+      const res = await axios.get(`${API_BASE_URL}/repo/${id}`);
       setRepo(res.data);
       setLoading(false);
     } catch (err) {
@@ -43,7 +44,7 @@ const RepoDetail = () => {
 
   const fetchIssues = async () => {
     try {
-      const res = await axios.get(`http://localhost:3002/issue/all?repository=${id}`);
+      const res = await axios.get(`${API_BASE_URL}/issue/all?repository=${id}`);
       setIssues(res.data);
     } catch (err) {
       console.error("Error fetching issues:", err);
@@ -59,7 +60,7 @@ const RepoDetail = () => {
 
   const handleToggleVisibility = async () => {
     try {
-      const res = await axios.patch(`http://localhost:3002/repo/toggle/${id}`);
+      const res = await axios.patch(`${API_BASE_URL}/repo/toggle/${id}`);
       setRepo(res.data.repository);
     } catch (err) {
       alert("Failed to toggle repository visibility");
@@ -69,7 +70,7 @@ const RepoDetail = () => {
   const handleDeleteRepo = async () => {
     if (window.confirm("Are you absolutely sure you want to delete this repository? This action cannot be undone.")) {
       try {
-        await axios.delete(`http://localhost:3002/repo/delete/${id}`);
+        await axios.delete(`${API_BASE_URL}/repo/delete/${id}`);
         navigate("/");
       } catch (err) {
         alert("Failed to delete repository");
@@ -83,7 +84,7 @@ const RepoDetail = () => {
 
     try {
       setCreatingIssue(true);
-      await axios.post("http://localhost:3002/issue/create", {
+      await axios.post(`${API_BASE_URL}/issue/create`, {
         title: issueTitle.trim(),
         description: issueDesc.trim(),
         repository: id,
@@ -103,7 +104,7 @@ const RepoDetail = () => {
   const handleToggleIssueStatus = async (issueId, currentStatus) => {
     const nextStatus = currentStatus === "open" ? "closed" : "open";
     try {
-      await axios.put(`http://localhost:3002/issue/update/${issueId}`, {
+      await axios.put(`${API_BASE_URL}/issue/update/${issueId}`, {
         status: nextStatus,
       });
       fetchIssues();
@@ -114,7 +115,7 @@ const RepoDetail = () => {
 
   const handleDeleteIssue = async (issueId) => {
     try {
-      await axios.delete(`http://localhost:3002/issue/delete/${issueId}`);
+      await axios.delete(`${API_BASE_URL}/issue/delete/${issueId}`);
       fetchIssues();
     } catch (err) {
       console.error("Error deleting issue:", err);
@@ -127,7 +128,7 @@ const RepoDetail = () => {
 
     try {
       setAddingContent(true);
-      const res = await axios.put(`http://localhost:3002/repo/update/${id}`, {
+      const res = await axios.put(`${API_BASE_URL}/repo/update/${id}`, {
         content: [newFileText.trim()],
       });
       setRepo(res.data.repository);

@@ -4,6 +4,7 @@ import { useAuth } from "../authContext";
 import axios from "axios";
 import "./navbar.css";
 import logo from "../assets/github-mark-white.svg";
+import API_BASE_URL from "../config/api";
 
 const Navbar = () => {
   const { currentUser, setCurrentUser } = useAuth();
@@ -20,7 +21,7 @@ const Navbar = () => {
       const userId = localStorage.getItem("userId");
       if (userId) {
         try {
-          const res = await axios.get(`http://localhost:3002/userProfile/${userId}`);
+          const res = await axios.get(`${API_BASE_URL}/userProfile/${userId}`);
           setUserProfile(res.data);
         } catch (err) {
           console.error("Error fetching navbar user profile:", err);
