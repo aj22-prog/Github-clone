@@ -1,0 +1,126 @@
+/* Auth Styling */
+.auth-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 32px 16px;
+  background-color: var(--bg-primary);
+}
+
+.auth-logo-container {
+  margin-bottom: 24px;
+}
+
+.auth-logo {
+  width: 48px;
+  height: 48px;
+  transition: transform 0.2s ease;
+}
+
+.auth-logo:hover {
+  transform: scale(1.08);
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.auth-alert-error {
+  width: 100%;
+  max-width: 340px;
+  background-color: rgba(248, 81, 73, 0.15);
+  border: 1px solid var(--accent-red);
+  color: #ff7b72;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 340px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.auth-forgot {
+  font-size: 12px;
+  color: var(--accent-blue);
+  cursor: pointer;
+}
+
+.auth-input-helper {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.auth-submit-btn {
+  margin-top: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.auth-switch-card {
+  width: 100%;
+  max-width: 340px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.auth-link {
+  color: var(--accent-blue);
+}
+
+.auth-footer {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  font-size: 12px;
+}
+
+.auth-footer a {
+  color: var(--text-secondary);
+}
+
+.auth-footer a:hover {
+  color: var(--accent-blue);
+}
